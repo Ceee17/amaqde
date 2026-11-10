@@ -1,0 +1,11 @@
+{
+  "name": "idx-swrt-engine",
+  "displayName": "IDX SWRT Quantitative Decision Engine",
+  "version": "1.0.0",
+  "description": "Local-First Multi-Agent Quantitative Decision Engine for the Indonesia Stock Exchange (IDX / BEI) with Streamable HTTP MCP + OAuth 2.1 PKCE, Sinkhorn-Sheaf-WDRO Math Kernel, and DuckDB SHA-256 Merkle Audit Ledger.",
+  "suggestedPrompts": [
+    "Run the IDX SWRT 5-agent decision pipeline for BBCA and verify the SHA-256 Merkle receipt",
+    "Audit BREN for Bandar Bull Trap / Gorengan Pucuk spoofing using Sinkhorn OT and Sheaf Cohomology",
+    "Verify the cryptographic integrity of audit_vault/audit_ledger.duckdb and all zstd Parquet snapshots"
+  ]
+}

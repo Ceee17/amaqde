@@ -1,0 +1,36 @@
+{
+  "mcpServers": {
+    "idx-swrt-web-mcp": {
+      "url": "http://localhost:3000/api/mcp",
+      "serverUrl": "http://localhost:3000/api/mcp"
+    },
+    "stockbit-live-jit": {
+      "command": "npx",
+      "args": ["-y", "stockbit-mcp"],
+      "env": {
+        "MODE": "READ_ONLY_JIT"
+      }
+    },
+    "idx-structural-quant": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "services.jit_market_tap.idx_quant_mcp"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    },
+    "swrt-math-kernel": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "services.swrt_math_kernel_mcp.server"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    },
+    "merkle-audit-ledger": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "services.merkle_audit_mcp.server"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  }
+}

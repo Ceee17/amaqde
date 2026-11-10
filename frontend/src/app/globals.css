@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background-color: #030712;
+  background-image: 
+    radial-gradient(at 15% 10%, rgba(16, 185, 129, 0.06) 0px, transparent 45%),
+    radial-gradient(at 85% 15%, rgba(6, 182, 212, 0.06) 0px, transparent 45%),
+    radial-gradient(at 50% 90%, rgba(244, 63, 94, 0.04) 0px, transparent 50%),
+    linear-gradient(to right, rgba(30, 41, 59, 0.18) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 41, 59, 0.18) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px, 36px 36px;
+  color: #f8fafc;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Custom sleek dark scrollbars for data tables and hash inspectors */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}

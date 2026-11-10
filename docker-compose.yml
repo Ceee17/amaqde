@@ -1,0 +1,57 @@
+services:
+  swrt-rust-kernel:
+    build:
+      context: ./services/rust_math_kernel
+      dockerfile: Dockerfile
+    container_name: idx-swrt-rust-kernel
+    ports:
+      - "4001:4001"
+    restart: unless-stopped
+    networks:
+      - swrt-net
+
+  swrt-audit-tap:
+    build:
+      context: .
+      dockerfile: services/audit_tap_service/Dockerfile
+    container_name: idx-swrt-audit-tap
+    ports:
+      - "4002:4002"
+    environment:
+      - SWRT_RUST_KERNEL_URL=http://swrt-rust-kernel:4001
+      - AUDIT_TAP_PORT=4002
+      - PYTHONUNBUFFERED=1
+      - ANTIGRAVITY_OAUTH_CODE=${ANTIGRAVITY_OAUTH_CODE:-ag_authz_example_user_session}
+    volumes:
+      - ./audit_vault:/app/audit_vault
+    depends_on:
+      - swrt-rust-kernel
+    restart: unless-stopped
+    networks:
+      - swrt-net
+
+  swrt-web-ui:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: idx-swrt-web-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - AUDIT_TAP_URL=http://swrt-audit-tap:4002
+      - RUST_KERNEL_URL=http://swrt-rust-kernel:4001
+      - SWRT_REPO_ROOT=/app
+      - ANTIGRAVITY_OAUTH_CODE=${ANTIGRAVITY_OAUTH_CODE:-ag_authz_example_user_session}
+    volumes:
+      - ./audit_vault:/app/audit_vault
+    depends_on:
+      - swrt-rust-kernel
+      - swrt-audit-tap
+    restart: unless-stopped
+    networks:
+      - swrt-net
+
+networks:
+  swrt-net:
+    driver: bridge

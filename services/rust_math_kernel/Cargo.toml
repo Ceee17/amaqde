@@ -1,0 +1,17 @@
+[package]
+name = "swrt-rust-kernel"
+version = "0.1.0"
+edition = "2021"
+description = "Native Rust High-Speed Mathematical Kernel Microservice for IDX SWRT Quantitative Engine"
+
+[dependencies]
+axum = "0.7"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "signal"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1
+strip = true
